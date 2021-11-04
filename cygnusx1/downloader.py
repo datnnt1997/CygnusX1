@@ -8,13 +8,20 @@ import base64
 import validators
 import requests
 
+requests.packages.urllib3.disable_warnings()
+requests.packages.urllib3.util.ssl_.DEFAULT_CIPHERS += ':HIGH:!DH:!aNULL'
+try:
+    requests.packages.urllib3.contrib.pyopenssl.util.ssl_.DEFAULT_CIPHERS += ':HIGH:!DH:!aNULL'
+except AttributeError:
+    # no pyopenssl support used / needed / available
+    pass
 
 def _download_image_from_src(img_src: str, save_dir: str) -> bool:
     try:
         if img_src is None:
             return False
         if validators.url(img_src):
-            r = requests.get(img_src, stream=True)
+            r = requests.get(img_src, stream=True, timeout=10, verify=False)
             if r.ok:
                 ext = r.headers['Content-Type'].split("/")[-1].strip()
                 filename = os.path.join(save_dir, f'{get_uuid()}.{ext}')
