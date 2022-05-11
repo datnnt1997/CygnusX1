@@ -2,8 +2,7 @@ from cygnusx1.bot import main
 import os
 import argparse
 
-
-if __name__ == "__main__":
+def run():
     parser = argparse.ArgumentParser(description='CygnusX1 Bot')
     parser.add_argument('--keywords', default="", type=str, required=True,
                         help='Indicate the keywords/keyphrases you want to search. For multiple keywords, separate '
@@ -18,4 +17,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if not os.path.exists(args.out_dir):
         os.mkdir(args.out_dir)
+
     main(args)
+
+if __name__ == "__main__":
+    run()

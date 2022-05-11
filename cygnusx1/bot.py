@@ -8,6 +8,7 @@ import os
 import time
 
 def main(args) -> bool:
+    print("zo")
     keywords = [k.strip() for k in args.keywords.split(",")]
     if len(keywords) == 0:
         return True

@@ -23,7 +23,14 @@ First, create a virtual environment with the version of Python you're going to u
 ```sh
 source venv/bin/activate
 ```
-Then download 🕳️CygnusX1 from Github:
+### Pip Insstallation
+Install 🕳️CygnusX1 by pip:
+```sh
+pip install CygnusX1
+```
+
+### Manual Installation
+Download 🕳️CygnusX1 from Github:
 ```sh
 git clone https://github.com/dat821168/CygnusX1.git
 ```
@@ -33,6 +40,10 @@ pip install -r requirements.txt
 ```
 
 ## Run
+Use cygnusx1 command line:
+```bash
+cygnusx1  --keywords "keyword 1, keyword 2" --workers 8 --use_suggestions --headless
+```
 
 Use `run.py` to start the script:
 ```bash
