@@ -6,8 +6,8 @@ README = (HERE / 'README.md').read_text()
 requires = (HERE / 'requirements.txt').read_text().split('\n')
 
 setup(
-    name="CysgnusX1",
-    version="1.0",
+    name="CygnusX1",
+    version="1.0.2",
     description="A multithreaded tool for searching and downloading images from popular search engines. It is straightforward to set up and run!",
     long_description=README,
     long_description_content_type="text/markdown",

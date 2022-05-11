@@ -8,9 +8,14 @@ Code by **Trong-Dat Ngo**.
 
 ## Key features
 
--  🥰 No knowledge is required to get up and to run.
+- 🥰 No knowledge is required to get up and to run.
 - 🚀 Download image using customizable number of threads.
 - ⛏️Crawl all possible images (search results and recommendations).
+
+## Demo
+<h2 align="center">
+  <img src="./statics/demo.gif" width="680" height="400">
+</h2>
 
 ## Installation
 
