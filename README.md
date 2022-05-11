@@ -14,7 +14,7 @@ Code by **Trong-Dat Ngo**.
 
 ## Demo
 <h2 align="center">
-  <img src="./statics/demo.gif" width="680" height="400">
+  <img src="https://github.com/datnnt1997/CygnusX1/raw/master/statics/demo.gif" width="680" height="400">
 </h2>
 
 ## Installation
