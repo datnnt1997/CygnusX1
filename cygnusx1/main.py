@@ -13,6 +13,7 @@ def run():
                         help='The maximum number of workers used to crawl image.')
     parser.add_argument("--use_suggestions", help="Use google suggestions.", action="store_true")
     parser.add_argument("--headless", help="Hide browser during scraping.", action="store_true")
+    parser.add_argument("--limit", help="Limit number of downloaded images", type=int, default=None)
 
     args = parser.parse_args()
     if not os.path.exists(args.out_dir):
