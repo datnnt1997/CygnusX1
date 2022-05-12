@@ -8,7 +8,7 @@ Code by **Trong-Dat Ngo**.
 
 ## Key features
 
-- 🥰 No knowledge is required to get up and to run.
+- 🥰 No knowledge is required to set up and to run.
 - 🚀 Download image using customizable number of threads.
 - ⛏️Crawl all possible images (search results and recommendations).
 
@@ -68,6 +68,8 @@ Argument details:
 - [x] <strike>Suppor [Google search engine</strike>](https://www.google.com/).
 - [ ] Support [Bing search engine](https://www.bing.com/).
 - [ ] Support [Baidu search engine](https://www.baidu.com/).
+- [ ] Limit amount of images which you want to download.
+- [ ] Detect duplicated or very similar images.
 
 
 ## References
