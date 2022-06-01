@@ -1,6 +1,6 @@
 <h1 align="center">🕳️CygnusX1</h1>
 
-Code by **Trong-Dat Ngo**.
+Code by 🧑‍💻**Trong-Dat Ngo**.
 
 ## Overviews
 
