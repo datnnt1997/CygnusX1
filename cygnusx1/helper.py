@@ -47,7 +47,7 @@ def get_uuid() -> str:
 
 def valid_image(file_path: str) -> None:
     raw_name, ext = os.path.splitext(file_path)
-    img_type = imghdr.what(file_path)
+    img_type = imghdr.what(file_path) or "jpeg"
     if f".{img_type}" != ext:
         new_file_path = f"{raw_name}.{img_type}"
         shutil.move(file_path, new_file_path)
