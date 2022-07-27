@@ -16,7 +16,9 @@ except AttributeError:
     # no pyopenssl support used / needed / available
     pass
 
+
 def _download_image_from_src(img_src: str, save_dir: str) -> bool:
+    # noinspection PyBroadException
     try:
         if img_src is None:
             return False
@@ -42,8 +44,10 @@ def _download_image_from_src(img_src: str, save_dir: str) -> bool:
                 f.write(imgdata)
             valid_image(filename)
         return True
-    except Exception as e:
+
+    except Exception as _:
         return False
+
 
 def download_image(params: Tuple[List[str], str, str]) -> Tuple[str, int]:
     if len(params) != 3:
@@ -59,4 +63,3 @@ def download_image(params: Tuple[List[str], str, str]) -> Tuple[str, int]:
         else:
             continue
     return keyword, success_count
-

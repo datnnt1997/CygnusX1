@@ -7,6 +7,7 @@ from tqdm import tqdm
 import os
 import time
 
+
 def main(args) -> bool:
     keywords = [k.strip() for k in args.keywords.split(",")]
     if len(keywords) == 0:

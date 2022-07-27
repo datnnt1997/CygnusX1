@@ -13,6 +13,7 @@ import time
 
 def _get_google_suggests(root_url: str, headless: bool = False) -> List[str]:
     urls = set()
+    # noinspection PyBroadException
     try:
         browser = get_browser(headless)
         browser.get(root_url)
@@ -20,11 +21,13 @@ def _get_google_suggests(root_url: str, headless: bool = False) -> List[str]:
         urls.update([s.get_attribute("href") for idx, s in enumerate(suggestions)
                      if s.get_attribute("href") is not None])
         browser.quit()
-    except Exception as e:
+    except Exception as _:
         # LOGGER.info(f"Failed to get google suggest.")
         pass
     return list(urls)
 
+
+# noinspection PyBroadException
 def _scrap_google_page_image_urls(page_url: str, thread_id: int, headless: bool = False) -> Tuple[List[str], int]:
     thread_name = f"BROWSER_{thread_id}"
     image_srcs = set()
@@ -46,7 +49,7 @@ def _scrap_google_page_image_urls(page_url: str, thread_id: int, headless: bool 
                 last_height = new_height
             try:
                 browser.find_element_by_class_name("mye4qd").click()
-            except:
+            except Exception as _:
                 continue
         thubnails = browser.find_elements(By.XPATH, GOOGLE_THUBNAILS_XPATH)
         num_of_search_results += len(thubnails)
@@ -63,15 +66,16 @@ def _scrap_google_page_image_urls(page_url: str, thread_id: int, headless: bool 
                     highlight(browser, img)
                     src = img.get_attribute('src')
                     image_srcs.add(src)
-            except Exception as e:
-                 # LOGGER.info(f"Failed to get google image.")
-                 continue
-    except Exception as e:
+            except Exception as _:
+                # LOGGER.info(f"Failed to get google image.")
+                continue
+    except Exception as _:
         # LOGGER.info(f"Failed to get google page image.")
         pass
     finally:
         browser.quit()
     return list(image_srcs), num_of_search_results
+
 
 def scrap_google_images(args, keywork: str) -> Tuple[List[str], int]:
     img_srcs = set()
