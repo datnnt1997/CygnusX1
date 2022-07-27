@@ -41,7 +41,7 @@ def main(args) -> bool:
         LOGGER.info(f"Keywords: '{k}'; "
                     f"Searched: {v['num_search']}; "
                     f"Scraped: {v['num_scraping']}; "
-                    f"Downloaned: {v['num_downloaded']};")
+                    f"Downloaded: {v['num_downloaded']};")
 
 
 
