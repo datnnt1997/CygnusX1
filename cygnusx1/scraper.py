@@ -6,13 +6,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from cygnusx1.config import (GOOGLE_SUGGEST_CLASS, GOOGLE_THUBNAILS_XPATH,
                              GOOGLE_IMAGE_FULLSIZE_XPATH, GOOGLE_IMAGE_LOADING_BAR_XPATH)
-from cygnusx1.helper import get_browser, highlight, LOGGER
+from cygnusx1.helper import get_browser, highlight
 
 import time
 
 
 def _get_google_suggests(root_url: str, headless: bool = False) -> List[str]:
     urls = set()
+    # noinspection PyBroadException
     try:
         browser = get_browser(headless)
         browser.get(root_url)
@@ -20,11 +21,13 @@ def _get_google_suggests(root_url: str, headless: bool = False) -> List[str]:
         urls.update([s.get_attribute("href") for idx, s in enumerate(suggestions)
                      if s.get_attribute("href") is not None])
         browser.quit()
-    except Exception as e:
+    except Exception as _:
         # LOGGER.info(f"Failed to get google suggest.")
         pass
     return list(urls)
 
+
+# noinspection PyBroadException
 def _scrap_google_page_image_urls(page_url: str, thread_id: int, headless: bool = False) -> Tuple[List[str], int]:
     thread_name = f"BROWSER_{thread_id}"
     image_srcs = set()
@@ -46,32 +49,33 @@ def _scrap_google_page_image_urls(page_url: str, thread_id: int, headless: bool 
                 last_height = new_height
             try:
                 browser.find_element_by_class_name("mye4qd").click()
-            except:
+            except Exception as _:
                 continue
-        thubnails = browser.find_elements(By.XPATH, GOOGLE_THUBNAILS_XPATH)
-        num_of_search_results += len(thubnails)
-        for thubnail in tqdm(thubnails, leave=False, desc=f"{thread_name}"):
+        thumbnails = browser.find_elements(By.XPATH, GOOGLE_THUBNAILS_XPATH)
+        num_of_search_results += len(thumbnails)
+        for thumbnail in tqdm(thumbnails, leave=False, desc=f"{thread_name}"):
             try:
-                highlight(browser, thubnail)
-                thubnail.click()
+                highlight(browser, thumbnail)
+                thumbnail.click()
                 loading_bar = browser.find_element(By.XPATH, GOOGLE_IMAGE_LOADING_BAR_XPATH)
                 # wait.until(WaitLoad(loading_bar))
                 if "display" in (str(loading_bar.get_attribute('style'))):
                     wait.until(lambda _: 'display: none' in str(loading_bar.get_attribute('style')))
-                imgs = browser.find_elements(By.XPATH, GOOGLE_IMAGE_FULLSIZE_XPATH)
-                for img in imgs:
+                images = browser.find_elements(By.XPATH, GOOGLE_IMAGE_FULLSIZE_XPATH)
+                for img in images:
                     highlight(browser, img)
                     src = img.get_attribute('src')
                     image_srcs.add(src)
-            except Exception as e:
-                 # LOGGER.info(f"Failed to get google image.")
-                 continue
-    except Exception as e:
+            except Exception as _:
+                # LOGGER.info(f"Failed to get google image.")
+                continue
+    except Exception as _:
         # LOGGER.info(f"Failed to get google page image.")
         pass
     finally:
         browser.quit()
     return list(image_srcs), num_of_search_results
+
 
 def scrap_google_images(args, keywork: str) -> Tuple[List[str], int]:
     img_srcs = set()

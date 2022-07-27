@@ -2,6 +2,7 @@ from cygnusx1.bot import main
 import os
 import argparse
 
+
 def run():
     parser = argparse.ArgumentParser(description='CygnusX1 Bot')
     parser.add_argument('--keywords', default="", type=str, required=True,
@@ -19,6 +20,7 @@ def run():
         os.mkdir(args.out_dir)
 
     main(args)
+
 
 if __name__ == "__main__":
     run()
