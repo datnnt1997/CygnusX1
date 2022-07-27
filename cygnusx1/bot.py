@@ -43,6 +43,3 @@ def main(args) -> bool:
                     f"Searched: {v['num_search']}; "
                     f"Scraped: {v['num_scraping']}; "
                     f"Downloaded: {v['num_downloaded']};")
-
-
-

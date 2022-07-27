@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from cygnusx1.config import (GOOGLE_SUGGEST_CLASS, GOOGLE_THUBNAILS_XPATH,
                              GOOGLE_IMAGE_FULLSIZE_XPATH, GOOGLE_IMAGE_LOADING_BAR_XPATH)
-from cygnusx1.helper import get_browser, highlight, LOGGER
+from cygnusx1.helper import get_browser, highlight
 
 import time
 
