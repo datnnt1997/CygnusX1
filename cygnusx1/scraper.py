@@ -51,18 +51,18 @@ def _scrap_google_page_image_urls(page_url: str, thread_id: int, headless: bool 
                 browser.find_element_by_class_name("mye4qd").click()
             except Exception as _:
                 continue
-        thubnails = browser.find_elements(By.XPATH, GOOGLE_THUBNAILS_XPATH)
-        num_of_search_results += len(thubnails)
-        for thubnail in tqdm(thubnails, leave=False, desc=f"{thread_name}"):
+        thumbnails = browser.find_elements(By.XPATH, GOOGLE_THUBNAILS_XPATH)
+        num_of_search_results += len(thumbnails)
+        for thumbnail in tqdm(thumbnails, leave=False, desc=f"{thread_name}"):
             try:
-                highlight(browser, thubnail)
-                thubnail.click()
+                highlight(browser, thumbnail)
+                thumbnail.click()
                 loading_bar = browser.find_element(By.XPATH, GOOGLE_IMAGE_LOADING_BAR_XPATH)
                 # wait.until(WaitLoad(loading_bar))
                 if "display" in (str(loading_bar.get_attribute('style'))):
                     wait.until(lambda _: 'display: none' in str(loading_bar.get_attribute('style')))
-                imgs = browser.find_elements(By.XPATH, GOOGLE_IMAGE_FULLSIZE_XPATH)
-                for img in imgs:
+                images = browser.find_elements(By.XPATH, GOOGLE_IMAGE_FULLSIZE_XPATH)
+                for img in images:
                     highlight(browser, img)
                     src = img.get_attribute('src')
                     image_srcs.add(src)

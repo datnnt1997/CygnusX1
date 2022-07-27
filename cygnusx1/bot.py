@@ -36,10 +36,13 @@ def main(args) -> bool:
     for kw, count in thread_map(download_image, maps,
                                 max_workers=args.workers, desc="Keywords Downloading", colour='green'):
         stats[kw]["num_downloaded"] = count
+
     LOGGER.info(f"\n{'='*21}SUMMARY{'='*21}")
-    LOGGER.info(f"Image crawl successfull. Check results at '{args.out_dir}'")
+    LOGGER.info(f"Image crawl successful. Check results at '{args.out_dir}'")
     for k, v in stats.items():
-        LOGGER.info(f"Keywords: '{k}'; "
-                    f"Searched: {v['num_search']}; "
-                    f"Scraped: {v['num_scraping']}; "
-                    f"Downloaded: {v['num_downloaded']};")
+        LOGGER.info(
+            f"Keywords: '{k}'; "
+            f"Searched: {v['num_search']}; "
+            f"Scraped: {v['num_scraping']}; "
+            f"Downloaded: {v['num_downloaded']};"
+        )
