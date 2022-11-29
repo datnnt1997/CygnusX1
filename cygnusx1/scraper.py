@@ -61,6 +61,10 @@ def _scrap_google_page_image_urls(page_url: str, thread_id: int, headless: bool 
                 # wait.until(WaitLoad(loading_bar))
                 if "display" in (str(loading_bar.get_attribute('style'))):
                     wait.until(lambda _: 'display: none' in str(loading_bar.get_attribute('style')))
+                # It seems that the above code doesn't work, and all the downloads are thumbnails.
+                # The following code has been tested to work properly
+                while 'display: none' not in str(loading_bar.get_attribute('style')):
+                    time.sleep(1)
                 images = browser.find_elements(By.XPATH, GOOGLE_IMAGE_FULLSIZE_XPATH)
                 for img in images:
                     highlight(browser, img)
